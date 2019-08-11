@@ -1,0 +1,23 @@
+{
+  "name": "bamazon-cli-app",
+  "version": "1.0.0",
+  "description": "CLI Based app for navigating a product inventory",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/19Sean96/bamazon-cli-app.git"
+  },
+  "author": "sean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/19Sean96/bamazon-cli-app/issues"
+  },
+  "homepage": "https://github.com/19Sean96/bamazon-cli-app#readme",
+  "dependencies": {
+    "inquirer": "^6.5.0",
+    "mysql": "^2.17.1"
+  }
+}
