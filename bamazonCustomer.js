@@ -132,6 +132,7 @@ function managerPortal() {
             } else if (ans.option === "Restock Inventory") {
                 restockInventory();
             } else {
+              addNewProduct();
             }
         });
 }
@@ -153,6 +154,38 @@ function checkForExtraQuery() {
       console.log("HAVE A GREAT DAY!");
       connection.end();
     }
+  });
+}
+
+function addNewProduct() {
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "productName",
+      message: "What Product Would you Like To Add?"
+    },
+    {
+      type: "input",
+      name: "department",
+      message: "What Department Is It In?"
+    },
+    {
+      type: "number",
+      name: "price",
+      message: "How Much Is This Product"
+    },
+    {
+      type: "number",
+      name: "quantity",
+      message: "How Many Would You Like To Stock?"
+    }
+  ]).then(ans => {
+    console.log(ans);
+    const sql = "INSERT INTO products (product_name, department_name, price, stock_quantity)" + `values ("${ans.productName}", "${ans.department}", "${ans.price}", "${ans.quantity}")`;
+    connection.query(sql, (res,err) => {
+      if (err) console.log(err);
+      console.log("CONTENT HAS BEEN UPDATED!!!!!!", res);
+    });
   });
 }
 
