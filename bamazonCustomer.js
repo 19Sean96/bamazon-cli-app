@@ -184,7 +184,9 @@ function addNewProduct() {
     const sql = "INSERT INTO products (product_name, department_name, price, stock_quantity)" + `values ("${ans.productName}", "${ans.department}", "${ans.price}", "${ans.quantity}")`;
     connection.query(sql, (res,err) => {
       if (err) console.log(err);
-      console.log("CONTENT HAS BEEN UPDATED!!!!!!", res);
+      console.log("CONTENT HAS BEEN UPDATED!!!!!!");
+      readProducts();
+      checkForExtraQuery();
     });
   });
 }
