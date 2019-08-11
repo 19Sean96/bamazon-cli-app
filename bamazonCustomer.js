@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: "root",
   
     // Your password
-    password: "Tina1mom",
+    password: "root",
     database: "bamazon"
   });
 
@@ -89,7 +89,6 @@ const connection = mysql.createConnection({
   }
 
   function calcPurchaseQuantity(item, countdown, i) {
-    let checkoutCart = [];
     inquirer.prompt([
       {
         type: "number",
@@ -119,24 +118,20 @@ const connection = mysql.createConnection({
 
   function updateInventory(newInventory) {
     let totalcost = 0;
-    console.log("NEW INVENTORY");
-    // console.log(newInventory);
     newInventory.forEach(item => {
       totalcost += item.cost;
-      console.log(item, `TOTALCOST: ${totalcost}`);
       connection.query(`UPDATE products SET stock_quantity = ${item.stock_quantity} WHERE id = ${item.id}`, function(err, res) {
         if (err) throw err;
-        console.log(`${item.id} UPDATED!`);
       });
     });
-    console.log(`YOUR TOTAL COST IS $${totalcost}. THANK YOU FOR CHOOSING BAMAZON!`);
-    connection.end();
+    console.log(`
+    ===========================================================================
+    YOUR TOTAL COST IS $${totalcost.toFixed(2)}. THANK YOU FOR CHOOSING BAMAZON!\n`);connection.end();
   }
   
   function readProducts() {
     connection.query("SELECT * FROM products", function(err, res) {
       if (err) throw err;
       productArr = res;
-      // connection.end();
     });
   }
